@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="Main.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="dllmain.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="Helper.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="framework.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="QuickShopX.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\SDK\Lib\bedrock_server_var.lib">
+      <Filter>LIB</Filter>
+    </Library>
+    <Library Include="..\SDK\Lib\bedrock_server_api.lib">
+      <Filter>LIB</Filter>
+    </Library>
+    <Library Include="..\SDK\Lib\LiteLoader.lib">
+      <Filter>LIB</Filter>
+    </Library>
+    <Library Include="..\SDK\Lib\SymDBHelper.lib">
+      <Filter>LIB</Filter>
+    </Library>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="LIB">
+      <UniqueIdentifier>{f6164eec-1f7e-4205-8d97-012305e91cfd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{55fd0e61-34c9-477e-859a-402f59487139}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{0a606854-a9ad-4c2c-b6ee-b7cf8bd1db33}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>
