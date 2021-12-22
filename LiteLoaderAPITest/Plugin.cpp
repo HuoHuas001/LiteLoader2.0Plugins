@@ -91,13 +91,6 @@ THook(bool, "?useItemOn@GameMode@@UEAA_NAEAVItemStack@@AEBVBlockPos@@EAEBVVec3@@
 	return original(a1,  item,  blockpos, a4, a5,  block);
 }
 
-THook(bool, "?attack@Player@@UEAA_NAEAVActor@@AEBW4ActorDamageCause@@@Z",
-	Player* _this, Actor* ac, int* damageCause)
-{
-	_this->sendPlaySoundPacket("random.glass", _this->getPos(), 1.00, 1.00);
-	return original(_this, ac, damageCause);
-}
-
 void PluginInit()
 {
 	test.info("Loaded");

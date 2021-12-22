@@ -14,8 +14,6 @@
 #include <Utils/useful.h>
 using namespace std;
 
-
-
 using namespace RegisterCommandHelper;
 
 inline static ServerPlayer* MakeSP(CommandOrigin const& ori) {
@@ -69,15 +67,10 @@ public:
     }
 };
 
-
-void RegisterCommands() {
-    Event::RegCmdEvent::subscribe([](Event::RegCmdEvent ev) { // Register commands
-        CustomMapCommand::setup(ev.mCommandRegistry);
-        return true;
-        });
-}
-
 void PluginInit()
 {
-    RegisterCommands();
+	Event::RegCmdEvent::subscribe([](Event::RegCmdEvent ev) { // Register commands
+		CustomMapCommand::setup(ev.mCommandRegistry);
+		return true;
+		});
 }
