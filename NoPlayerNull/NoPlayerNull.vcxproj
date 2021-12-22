@@ -9,8 +9,8 @@
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>
     <Keyword>Win32Proj</Keyword>
-    <ProjectGuid>{d13fd550-2e20-459d-94e1-ae2c2d28a783}</ProjectGuid>
-    <RootNamespace>CustomMapX</RootNamespace>
+    <ProjectGuid>{1372330b-2bb3-420b-8e8b-6daba59258f7}</ProjectGuid>
+    <RootNamespace>NoPlayerNull</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -67,14 +67,12 @@ LibraryBuilder.exe -o ..\Lib
 </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>
-				if exist $(LocalDebuggerWorkingDirectory) (
-				copy /Y $(TargetPath) $(LocalDebuggerWorkingDirectory)\
-				)</Command>
+      <Command>if exist $(LocalDebuggerWorkingDirectory)\plugins\ (
+copy /Y $(TargetPath) $(LocalDebuggerWorkingDirectory)\
+)</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="Color.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="pch.h" />
   </ItemGroup>

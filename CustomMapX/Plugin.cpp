@@ -36,7 +36,7 @@ public:
 		if (!mapd) { outp.error(u8"not a filled map"); return; }
 		mapd->setLocked();//locked
 		auto& pix = dAccess<std::vector<unsigned int>, 0x30>(mapd);//getPixels()
-		ifstream ifs("plugins/CustomMap/mapbin/" + file, std::ios::binary);
+		ifstream ifs( file, std::ios::binary);
 		auto str = ifs2str(ifs);
 		RBStream rs{ str };
 		if (ifs.fail()) {
@@ -60,15 +60,18 @@ public:
     }
 
     static void setup(CommandRegistry* registry) {
-        registry->registerCommand( "custommap", "custommap",CommandPermissionLevel::Console,{ (CommandFlagValue)0 },{ (CommandFlagValue)0x80 });
+		registry->registerCommand(
+			"custommap", "Teleport to Dimension", CommandPermissionLevel::Any,
+			{ (CommandFlagValue)0 }, { (CommandFlagValue)0x80 });
 
-        registry->registerOverload<CustomMapCommand>("custommap", 
-            makeMandatory(&CustomMapCommand::file, "optional"));
+        registry->registerOverload<CustomMapCommand>("custommap", makeMandatory(&CustomMapCommand::file, "optional"));
     }
 };
+Logger test("MAP");
 
 void PluginInit()
 {
+	test.info("hi");
 	Event::RegCmdEvent::subscribe([](Event::RegCmdEvent ev) { // Register commands
 		CustomMapCommand::setup(ev.mCommandRegistry);
 		return true;
