@@ -13,7 +13,11 @@ class UpdateBlockPacket : public Packet {
 
 #define AFTER_EXTRA
 // Add Member There
-
+public:
+    BlockPos pos;
+    uint32_t dataLayerId;
+    uint8_t flags;
+    uint32_t runtimeId;
 #undef AFTER_EXTRA
 
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_UPDATEBLOCKPACKET

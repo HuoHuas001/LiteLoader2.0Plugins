@@ -5,7 +5,7 @@
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
-
+#include "ItemData.hpp"
 #undef BEFORE_EXTRA
 
 class SynchedActorData {
@@ -13,7 +13,8 @@ class SynchedActorData {
 #define AFTER_EXTRA
 // Add Member There
 public:
-
+    std::vector<std::unique_ptr<DataItem>> items;
+    uint16_t                               start, end;
 #undef AFTER_EXTRA
 
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_SYNCHEDACTORDATA

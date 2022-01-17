@@ -13,6 +13,11 @@ class ContainerOpenPacket : public Packet {
 
 #define AFTER_EXTRA
 // Add Member There
+public:
+    ContainerID id = ContainerID::Invalid;
+    ContainerType type = ContainerType::CONTAINER;
+    BlockPos pos;
+    ActorUniqueID actor_id = -1;
 
 #undef AFTER_EXTRA
 

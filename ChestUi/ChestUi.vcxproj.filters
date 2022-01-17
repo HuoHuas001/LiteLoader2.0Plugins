@@ -29,22 +29,8 @@
     <ClCompile Include="pch.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="Plugin.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-  </ItemGroup>
-  <ItemGroup>
-    <Library Include="..\SDK\Lib\bedrock_server_var.lib">
-      <Filter>资源文件</Filter>
-    </Library>
-    <Library Include="..\SDK\Lib\LiteLoader.lib">
-      <Filter>资源文件</Filter>
-    </Library>
-    <Library Include="..\SDK\Lib\SymDBHelper.lib">
-      <Filter>资源文件</Filter>
-    </Library>
-    <Library Include="..\SDK\Lib\bedrock_server_api.lib">
-      <Filter>资源文件</Filter>
-    </Library>
   </ItemGroup>
 </Project>

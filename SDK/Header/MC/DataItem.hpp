@@ -14,7 +14,15 @@ class DataItem {
 #define AFTER_EXTRA
 // Add Member There
 public:
+    DataItemType type;
+    uint16_t     id;
+    bool         dirty;
 
+    DataItem(DataItemType type, uint16_t id, bool dirty)
+        : type(type)
+        , id(id)
+        , dirty(dirty) {
+    }
 
 #undef AFTER_EXTRA
 

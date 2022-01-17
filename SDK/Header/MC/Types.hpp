@@ -657,6 +657,12 @@ enum class transactionType {
     ItemReleaseTransaction = 0x04
 };
 
+enum class ContainerID : char
+{
+    Invalid = -1,
+    Inventory
+};
+
 enum class ItemStackRequestActionType {
     Take = 0x00,
     Place = 0x01,

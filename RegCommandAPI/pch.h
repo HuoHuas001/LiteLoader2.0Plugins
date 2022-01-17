@@ -10,9 +10,6 @@
 // 添加要在此处预编译的标头
 #include <iostream>
 #include <Global.h>
-#include <MC/Actor.hpp>
-#include <MC/ServerPlayer.hpp>
-#include <stl/Bstream.h>
-#include <stl/varint.h>
-#include <LoggerAPI.h>
+#include <LLAPI.h>
+#include <RegCommandAPI.h>
 #endif //PCH_H

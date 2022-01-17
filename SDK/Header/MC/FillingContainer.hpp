@@ -6,14 +6,16 @@
 
 #define BEFORE_EXTRA
 // Include Headers or Declare Types Here
-
+#include "ItemStack.hpp"
 #undef BEFORE_EXTRA
 
 class FillingContainer : public Container {
 
 #define AFTER_EXTRA
 // Add Member There
-
+public:
+    std::vector<ItemStack> data;
+    Player* player;
 #undef AFTER_EXTRA
 
 #ifndef DISABLE_CONSTRUCTOR_PREVENTION_FILLINGCONTAINER
