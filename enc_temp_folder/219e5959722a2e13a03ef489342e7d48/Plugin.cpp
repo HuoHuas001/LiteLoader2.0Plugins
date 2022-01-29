@@ -143,6 +143,17 @@ THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVItemS
     return original(_this, a2,a3);
 }
 
+THook(void, "?slotChanged@ServerPlayer@@UEAAXAEAVIContainerManager@@AEAVContainer@@HAEBVItemStack@@2_N@Z",
+    ServerPlayer* _this,
+    IContainerManager* a2,
+    Container* a3,
+    unsigned int a4,
+    ItemStack* a5,
+    ItemStack* a6,
+    bool a7) {
+    logger.info("114514");
+    return original(_this, a2, a3,a4,a5,a6,a7);
+}
 
 
 void PluginInit()
