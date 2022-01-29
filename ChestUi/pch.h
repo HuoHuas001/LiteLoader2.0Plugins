@@ -11,4 +11,21 @@
 #include <iostream>
 #include <Global.h>
 
+#include <Global.h>
+#include <LLAPI.h>
+
+#include <MC/Player.hpp>
+#include <MC/Level.hpp>
+#include <MC/HashedString.hpp>
+#include <MC/BlockSource.hpp>
+#include <MC/Block.hpp>
+#include <MC/ItemStack.hpp>
+#include <MC/Container.hpp>
+
+#include <MC/VanillaBlocks.hpp>
+#include <MC/BinaryStream.hpp>
+#include <MC/MinecraftPackets.hpp>
+#include <MC/Dimension.hpp>
+#include <MC/Packet.hpp>
+
 #endif //PCH_H

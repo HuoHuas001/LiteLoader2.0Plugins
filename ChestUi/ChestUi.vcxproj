@@ -67,9 +67,8 @@ LibraryBuilder.exe -o ..\Lib
 </Command>
     </PreBuildEvent>
     <PostBuildEvent>
-      <Command>if exist $(LocalDebuggerWorkingDirectory)\plugins\ (
-copy /Y $(TargetPath) $(LocalDebuggerWorkingDirectory)\
-)</Command>
+      <Command>copy "E:\C++Project\MCServerPlugins\LiteLoader2.0Plugins\x64\Release\ChestUi.dll" E:\MCServer\bedrock-server-1.18.2.03\plugins\
+copy "E:\C++Project\MCServerPlugins\LiteLoader2.0Plugins\x64\Release\ChestUi.pdb" E:\MCServer\bedrock-server-1.18.2.03\plugins\</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
