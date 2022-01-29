@@ -123,6 +123,7 @@ void EventInit() {
     Event::RegCmdEvent::subscribe(regcmd);
 }
 
+//关闭箱子触发
 THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVContainerClosePacket@@@Z", 
     ServerNetworkHandler* _this, NetworkIdentifier* a2, ContainerClosePacket* a3) {
     ServerPlayer* sp = _this->getServerPlayer(*a2,0);
@@ -132,6 +133,7 @@ THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVConta
     return original(_this,a2,a3);
 }
 
+//选择物品触发
 THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVItemStackRequestPacket@@@Z",
     ServerNetworkHandler* _this,
     NetworkIdentifier* a2,
