@@ -27,6 +27,7 @@
 #include <MC/BlockInstance.hpp>
 #include <MC/IContainerManager.hpp>
 #include <MC/ItemStack.hpp>
+#include <MC/ContainerSetDataPacket.hpp>
 
 static_assert(sizeof(UpdateBlockPacket) == 72);
 static_assert(sizeof(BlockActorDataPacket) == 88);
@@ -40,7 +41,7 @@ static unordered_map<ServerPlayer*, BlockPos> RecordedInfo;
 
 void updateBlock(ServerPlayer* sp, BlockPos a1)
 {
-    string nbt = u8"{\"Findable\":0b,\"Items\":[{\"Count\":1b,\"Damage\":3s,\"Name\":\"minecraft:skull\",\"Slot\":0b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"返回主城\"}}},{\"Count\":1b,\"Damage\":5s,\"Name\":\"minecraft:skull\",\"Slot\":2b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"商店\"}}},{\"Count\":1b,\"Damage\":0s,\"Name\":\"minecraft:skull\",\"Slot\":4b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"说你好\"}}},{\"Count\":1b,\"Damage\":1s,\"Name\":\"minecraft:skull\",\"Slot\":6b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"给我打钱\"}}},{\"Count\":1b,\"Damage\":4s,\"Name\":\"minecraft:skull\",\"Slot\":8b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"公会菜单\"}}},{\"Count\":1b,\"Damage\":2s,\"Name\":\"minecraft:skull\",\"Slot\":9b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"前往生存区\"}}},{\"Block\":{\"name\":\"minecraft:stained_glass_pane\",\"states\":{\"color\":\"red\"},\"version\":17879555},\"Count\":1b,\"Damage\":0s,\"Name\":\"minecraft:stained_glass_pane\",\"Slot\":26b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"返回上一级\"}}}],\"id\":\"Chest\",\"isMovable\":1b,\"x\":-9,\"y\":120,\"z\":48}";
+    string nbt = u8"{\"Findable\":0b,\"Items\":[{\"Count\":1b,\"Damage\":3s,\"Name\":\"minecraft:skull\",\"Slot\":0b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"杩斿洖涓诲煄\"}}},{\"Count\":1b,\"Damage\":5s,\"Name\":\"minecraft:skull\",\"Slot\":2b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"鍟嗗簵\"}}},{\"Count\":1b,\"Damage\":0s,\"Name\":\"minecraft:skull\",\"Slot\":4b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"璇翠綘濂絓"}}},{\"Count\":1b,\"Damage\":1s,\"Name\":\"minecraft:skull\",\"Slot\":6b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"缁欐垜鎵撻挶\"}}},{\"Count\":1b,\"Damage\":4s,\"Name\":\"minecraft:skull\",\"Slot\":8b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"鍏細鑿滃崟\"}}},{\"Count\":1b,\"Damage\":2s,\"Name\":\"minecraft:skull\",\"Slot\":9b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"鍓嶅線鐢熷瓨鍖篭"}}},{\"Block\":{\"name\":\"minecraft:stained_glass_pane\",\"states\":{\"color\":\"red\"},\"version\":17879555},\"Count\":1b,\"Damage\":0s,\"Name\":\"minecraft:stained_glass_pane\",\"Slot\":26b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"杩斿洖涓婁竴绾"}}}],\"id\":\"Chest\",\"isMovable\":1b,\"x\":-9,\"y\":120,\"z\":48}";
     auto nbt1 = CompoundTag::fromSNBT(nbt);
     nbt1->putString("id", "Chest");
     nbt1->putInt("x", a1.x);
@@ -79,13 +80,13 @@ void open(ServerPlayer* sp, BlockPos pos)
 
 class openCommand : public Command {
 public:
-    void execute(CommandOrigin const& ori, CommandOutput& output) const override {//执行部分
+    void execute(CommandOrigin const& ori, CommandOutput& output) const override {//鎵ц閮ㄥ垎
         ServerPlayer* sp = ori.getPlayer();
         updateBlock(sp, sp->getBlockPos());
         open(sp, sp->getBlockPos());
     }
 
-    static void setup(CommandRegistry* registry) {//注册部分(推荐做法)
+    static void setup(CommandRegistry* registry) {//娉ㄥ唽閮ㄥ垎(鎺ㄨ崘鍋氭硶)
         registry->registerCommand("open", "open chest ui", CommandPermissionLevel::Any, { (CommandFlagValue)0 }, { (CommandFlagValue)0x80 });
         registry->registerOverload<openCommand>("open");
     }
@@ -123,7 +124,7 @@ void EventInit() {
     Event::RegCmdEvent::subscribe(regcmd);
 }
 
-//关闭箱子触发
+//鍏抽棴绠卞瓙瑙﹀彂
 THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVContainerClosePacket@@@Z", 
     ServerNetworkHandler* _this, NetworkIdentifier* a2, ContainerClosePacket* a3) {
     ServerPlayer* sp = _this->getServerPlayer(*a2,0);
@@ -133,7 +134,7 @@ THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVConta
     return original(_this,a2,a3);
 }
 
-//选择物品触发
+//閫夋嫨鐗╁搧瑙﹀彂
 THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVItemStackRequestPacket@@@Z",
     ServerNetworkHandler* _this,
     NetworkIdentifier* a2,
