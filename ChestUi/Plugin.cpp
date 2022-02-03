@@ -11,8 +11,6 @@
 #include <MC/ContainerOpenPacket.hpp>
 #include <MC/ContainerClosePacket.hpp>
 #include <MC/ChestBlockActor.hpp>
-#include <MC/ItemStackRequestPacket.hpp>
-#include <MC/ItemStackRequestActionHandler.hpp>
 #include <MC/VanillaBlocks.hpp>
 #include <MC/CompoundTag.hpp>
 #include <MC/BlockInstance.hpp>
@@ -24,11 +22,10 @@
 #include <RegCommandAPI.h>
 #include <LoggerAPI.h>
 #include <MC/Level.hpp>
-#include <MC/BlockInstance.hpp>
-#include <MC/IContainerManager.hpp>
-#include <MC/ItemStack.hpp>
-#include <MC/ContainerSetDataPacket.hpp>
-#include <MC/InventoryTransactionPacket.hpp>
+#include <MC/ItemStackRequestPacket.hpp>
+
+//Yaml
+#include "../SDK/Header/third-party/yaml-cpp/yaml.h"
 
 static_assert(sizeof(UpdateBlockPacket) == 72);
 static_assert(sizeof(BlockActorDataPacket) == 88);
@@ -42,8 +39,9 @@ static unordered_map<ServerPlayer*, BlockPos> RecordedInfo;
 
 void updateBlock(ServerPlayer* sp, BlockPos a1)
 {
-    string nbt = u8"{\"Findable\":0b,\"Items\":[{\"Count\":1b,\"Damage\":3s,\"Name\":\"minecraft:skull\",\"Slot\":0b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"返回主城\"}}},{\"Count\":1b,\"Damage\":5s,\"Name\":\"minecraft:skull\",\"Slot\":2b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"商店\"}}},{\"Count\":1b,\"Damage\":0s,\"Name\":\"minecraft:skull\",\"Slot\":4b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"说你好\"}}},{\"Count\":1b,\"Damage\":1s,\"Name\":\"minecraft:skull\",\"Slot\":6b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"给我打钱\"}}},{\"Count\":1b,\"Damage\":4s,\"Name\":\"minecraft:skull\",\"Slot\":8b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"公会菜单\"}}},{\"Count\":1b,\"Damage\":2s,\"Name\":\"minecraft:skull\",\"Slot\":9b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"前往生存区\"}}},{\"Block\":{\"name\":\"minecraft:stained_glass_pane\",\"states\":{\"color\":\"red\"},\"version\":17879555},\"Count\":1b,\"Damage\":0s,\"Name\":\"minecraft:stained_glass_pane\",\"Slot\":26b,\"WasPickedUp\":0b,\"tag\":{\"RepairCost\":0,\"display\":{\"Name\":\"返回上一级\"}}}],\"id\":\"Chest\",\"isMovable\":1b,\"x\":-9,\"y\":120,\"z\":48}";
+    string nbt = u8"{\"Findable\":0b,\"Items\":[],\"id\":\"Chest\",\"isMovable\":1b,\"x\":-9,\"y\":120,\"z\":48}";
     auto nbt1 = CompoundTag::fromSNBT(nbt);
+    //auto nbt1 = CompoundTag::create();
     nbt1->putString("id", "Chest");
     nbt1->putInt("x", a1.x);
     nbt1->putInt("y", a1.y);
@@ -83,8 +81,8 @@ class openCommand : public Command {
 public:
     void execute(CommandOrigin const& ori, CommandOutput& output) const override {//执行部分
         ServerPlayer* sp = ori.getPlayer();
-        updateBlock(sp, sp->getBlockPos());
-        open(sp, sp->getBlockPos());
+        updateBlock(sp, sp->getBlockPos().add(0, 2, 0));
+        open(sp, sp->getBlockPos().add(0, 2, 0));
     }
 
     static void setup(CommandRegistry* registry) {//注册部分(推荐做法)
@@ -141,23 +139,10 @@ THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVItemS
     NetworkIdentifier* a2,
     ItemStackRequestPacket* a3) {
     ServerPlayer* sp = _this->getServerPlayer(*a2, 0);
-    
     BlockSource& bs = sp->getRegion();
     BlockPos bp = RecordedInfo[sp];
     return original(_this, a2,a3);
 }
-
-
-//Item
-THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVInventoryTransactionPacket@@@Z",
-    ServerNetworkHandler* _this,
-    NetworkIdentifier* a2,
-    InventoryTransactionPacket* a3) {
-
-    logger.info("114514");
-    return original(_this, a2, a3);
-}
-
 
 void PluginInit()
 {
