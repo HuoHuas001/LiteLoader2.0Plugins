@@ -1,0 +1,27 @@
+Item: 
+  - SNBT: '{"Count":1b,"Damage":3s,"Name":"minecraft:skull","Slot":0b,"WasPickedUp":0b,"tag":{"RepairCost":0,"display":{"Name":"返回主城"}}}"'
+    Cmd: 
+      type: "player_cmd"
+      cmd: "/guild"
+
+  - SNBT: '{"Count":1b,"Damage":3s,"Name":"minecraft:skull","Slot":0b,"WasPickedUp":0b,"tag":{"RepairCost":0,"display":{"Name":"返回主城"}}}"'
+    Cmd: 
+      type: "player_cmd"
+      cmd: "/guild"
+
+  - SNBT: '{"Count":1b,"Damage":5s,"Name":"minecraft:skull","Slot":2b,"WasPickedUp":0b,"tag":{"RepairCost":0,"display":{"Name":"商店"}}}'
+    Cmd: 
+      type: "player_cmd"
+      cmd: "/guild"
+
+  - SNBT: '{"Count":1b,"Damage":0s,"Name":"minecraft:skull","Slot":4b,"WasPickedUp":0b,"tag":{"RepairCost":0,"display":{"Name":"说你好"}}}'
+    Cmd: 
+      type: "player_cmd"
+      cmd: "/guild"
+
+  - SNBT: '{"Count":1b,"Damage":1s,"Name":"minecraft:skull","Slot":6b,"WasPickedUp":0b,"tag":{"RepairCost":0,"display":{"Name":"给我打钱"}}}'
+    Cmd: 
+      type: "player_cmd"
+      cmd: "/guild"
+            
+
