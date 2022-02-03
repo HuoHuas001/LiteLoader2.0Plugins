@@ -1,4 +1,4 @@
-#include "pch.h"
+﻿#include "pch.h"
 #include <EventAPI.h>
 #include <LoggerAPI.h>
 #include <MC/ItemStack.hpp>
@@ -28,6 +28,7 @@
 #include <MC/IContainerManager.hpp>
 #include <MC/ItemStack.hpp>
 #include <MC/ContainerSetDataPacket.hpp>
+#include <MC/InventoryTransactionPacket.hpp>
 
 static_assert(sizeof(UpdateBlockPacket) == 72);
 static_assert(sizeof(BlockActorDataPacket) == 88);
@@ -146,6 +147,16 @@ THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVItemS
     return original(_this, a2,a3);
 }
 
+
+//Item
+THook(void, "?handle@ServerNetworkHandler@@UEAAXAEBVNetworkIdentifier@@AEBVInventoryTransactionPacket@@@Z",
+    ServerNetworkHandler* _this,
+    NetworkIdentifier* a2,
+    InventoryTransactionPacket* a3) {
+
+    logger.info("114514");
+    return original(_this, a2, a3);
+}
 
 
 void PluginInit()
